@@ -1,0 +1,239 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+}
+:root{
+    --color-Prin:rgb(52, 17, 17);
+    --color-Secun:rgb(37, 10, 10);
+    --color-Blanco:aliceblue;
+    
+}
+body{
+    background-color: var(--color-Prin);
+    padding: 2px;
+    color: var(--color-Blanco);
+}
+p{
+    font-weight:bolder;
+}
+
+.Contenedor_Titulo{
+display: flex;
+justify-content: space-between;
+border-bottom: 7px solid var(--color-Secun) ;
+width: 1fr;
+}
+
+
+.megaContenedor{
+    display: flex;
+    justify-content: center;
+}
+.Caja{
+    border-radius: 25px;
+    padding: 20px;
+}
+.Caja:not(#Links):hover{
+   transition: 2s;
+   transform: scale(1.1);
+}   
+#Titulo{
+    grid-area:Titulo;
+    display: flex;
+    align-items: center;
+}
+#Titulo h2{
+    font-family:fantasy;
+    font-size:  60px;
+    text-transform: capitalize;
+}
+
+/*Encargados de Crear el grid (la columna vertebral de la pagina web ) */
+
+
+
+#Concepto{
+grid-area:Concepto;
+padding: 0px;
+font-family:'Times New Roman', Times, serif;
+}
+
+#AttackOfTitan{
+    grid-area: AttackOfTitan;
+    padding: 0px;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#AttackOfTitan p{
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+#AttackOfTitan img{
+    display: block;
+    width: 100%;
+    height:80px;
+    object-fit: cover;
+}
+
+
+
+#Music{
+grid-area: Music;
+padding: 0px;
+}
+
+#Music iframe{
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#Eyes{
+grid-area: Eyes;
+padding: 0px;   
+}
+/*Este codigo de "nombre" se encarga de hacer que la imagen quede al tamaño exacto de la caja ademas de que
+    se encarga de que no salga nunca de su caja,y le colocamos los bordes igual que la caja*/
+#Eyes img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+/*Aqui teniamos un error ya que la caja tenia padding y la imagen no, una solucion rapida fue simplemente eliminarle
+    ese padding a la caja, ya que el css es secuencial y bla bla bla...*/
+
+
+
+#Links{
+background-color: var(--color-Secun);
+grid-area: Links;
+font-size: x-large;
+display:flex; 
+justify-content: space-evenly;  
+}
+
+#Links a{
+    background-color: aliceblue;
+    border-radius: 5px;
+    height: 50px;
+    width: 90px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Cards{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.megaContenedor{
+    gap: 20px;  
+    row-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 180px 170px 150px;
+    grid-template-areas:    
+    "Titulo Titulo Concepto AttackOfTitan"
+    "Music Eyes Eyes AttackOfTitan"
+    "Links Links Links Links"   
+    ;
+}
+
+
+
+
+
+@media (max-width:768px) {
+
+
+body{
+    background-color: var(--color-Prin);
+    padding: 0px;
+}
+
+
+.Caja:not(#Links):hover{
+   transition: 2s;
+   transform: scale(1.1);
+   
+} 
+
+.Contenedor_Titulo{
+display: flex;
+justify-content: space-between;
+border-bottom: 7px solid var(--color-Secun) ;
+flex-direction: column;
+width: 100%;
+}
+
+
+
+
+#Titulo h2{
+    font-family:fantasy;
+    font-size:  43px;
+    text-transform: capitalize;
+}
+.Caja{
+    border-radius: 10px;
+    padding: 0px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+.Caja:not(#Links):hover{
+   transition: 1s;
+   transform: scale(1.01);
+} 
+
+#Eyes img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+
+#Links{
+background-color: var(--color-Secun);
+display:flex; 
+justify-content: space-evenly;  
+}
+#Links a{
+    background-color: aliceblue;
+    border-radius: 5px;
+    height: 20px;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+}
+#Eyes img{
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+.Contenedor_Titulo h1{
+    font-size: medium;
+}
+.megaContenedor{
+    gap: 10px;
+    row-gap: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+}
