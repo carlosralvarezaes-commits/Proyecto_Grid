@@ -1,63 +1,78 @@
+/* Reset básico: elimina márgenes/padding por defecto y mejora el cálculo de tamaños */
 *{
     box-sizing: border-box;
     padding: 0;
 }
+
+/* Variables globales de colores (más fácil de mantener) */
 :root{
-    --color-Prin:rgb(52, 17, 17);
-    --color-Secun:rgb(37, 10, 10);
-    --color-Blanco:aliceblue;
-    
+    --color-Prin:rgb(52, 17, 17);   /* Color principal (fondo) */
+    --color-Secun:rgb(37, 10, 10);  /* Color secundario (detalles) */
+    --color-Blanco:aliceblue;       /* Color del texto */
 }
+
+/* Estilo general del body */
 body{
     background-color: var(--color-Prin);
     padding: 2px;
     color: var(--color-Blanco);
 }
+
+/* Párrafos en negrita */
 p{
     font-weight:bolder;
 }
 
+/* Contenedor del título (header) */
 .Contenedor_Titulo{
-display: flex;
-justify-content: space-between;
-border-bottom: 7px solid var(--color-Secun) ;
-width: 1fr;
+    display: flex; /* coloca elementos en fila */
+    justify-content: space-between; /* separa los títulos */
+    border-bottom: 7px solid var(--color-Secun);
+    width: 1fr; /* ❗ esto realmente no tiene efecto aquí */
 }
 
-
+/* Contenedor principal centrado */
 .megaContenedor{
     display: flex;
     justify-content: center;
 }
+
+/* Estilo general de todas las cajas */
 .Caja{
     border-radius: 25px;
     padding: 20px;
 }
+
+/* Efecto hover para todas las cajas excepto #Links */
 .Caja:not(#Links):hover{
    transition: 2s;
-   transform: scale(1.1);
+   transform: scale(1.1); /* agranda la caja */
 }   
+
+/* Sección del título principal */
 #Titulo{
     grid-area:Titulo;
     display: flex;
-    align-items: center;
+    align-items: center; /* centra verticalmente */
 }
+
+/* Estilo del texto del título */
 #Titulo h2{
     font-family:fantasy;
-    font-size:  60px;
+    font-size: 60px;
     text-transform: capitalize;
 }
 
-/*Encargados de Crear el grid (la columna vertebral de la pagina web ) */
+/* -------- GRID (estructura principal de la web) -------- */
 
-
-
+/* Sección de concepto */
 #Concepto{
-grid-area:Concepto;
-padding: 0px;
-font-family:'Times New Roman', Times, serif;
+    grid-area:Concepto;
+    padding: 0px;
+    font-family:'Times New Roman', Times, serif;
 }
 
+/* Sección Attack on Titan */
 #AttackOfTitan{
     grid-area: AttackOfTitan;
     padding: 0px;  
@@ -66,58 +81,57 @@ font-family:'Times New Roman', Times, serif;
     justify-content: space-between;
 }
 
+/* Texto centrado */
 #AttackOfTitan p{
     text-align: center;
     font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
+/* Imágenes dentro de esta sección */
 #AttackOfTitan img{
     display: block;
     width: 100%;
     height:80px;
-    object-fit: cover;
+    object-fit: cover; /* recorta sin deformar */
 }
 
-
-
+/* Sección música */
 #Music{
-grid-area: Music;
-padding: 0px;
+    grid-area: Music;
+    padding: 0px;
 }
 
+/* Ajuste del iframe (Spotify) */
 #Music iframe{
     border-radius: 15px;
     width: 100%;
     height: 100%;
 }
 
-
-
+/* Imagen principal */
 #Eyes{
-grid-area: Eyes;
-padding: 0px;   
+    grid-area: Eyes;
+    padding: 0px;   
 }
-/*Este codigo de "nombre" se encarga de hacer que la imagen quede al tamaño exacto de la caja ademas de que
-    se encarga de que no salga nunca de su caja,y le colocamos los bordes igual que la caja*/
+
+/* Hace que la imagen ocupe toda la caja sin deformarse */
 #Eyes img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 25px;
 }
-/*Aqui teniamos un error ya que la caja tenia padding y la imagen no, una solucion rapida fue simplemente eliminarle
-    ese padding a la caja, ya que el css es secuencial y bla bla bla...*/
 
-
-
+/* Sección de enlaces */
 #Links{
-background-color: var(--color-Secun);
-grid-area: Links;
-font-size: x-large;
-display:flex; 
-justify-content: space-evenly;  
+    background-color: var(--color-Secun);
+    grid-area: Links;
+    font-size: x-large;
+    display:flex; 
+    justify-content: space-evenly;  
 }
 
+/* Estilo de los botones/enlaces */
 #Links a{
     background-color: aliceblue;
     border-radius: 5px;
@@ -129,111 +143,99 @@ justify-content: space-evenly;
     justify-content: center;
     align-items: center;
 }
+
+/* Contenedor interno de cada tarjeta */
 .Cards{
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-
+/* GRID principal */
 .megaContenedor{
     gap: 20px;  
     row-gap: 20px;
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
     grid-template-rows: 180px 170px 150px;
+
     grid-template-areas:    
     "Titulo Titulo Concepto AttackOfTitan"
     "Music Eyes Eyes AttackOfTitan"
-    "Links Links Links Links"   
-    ;
+    "Links Links Links Links";
 }
 
-
-
-
-
+/* -------- RESPONSIVE (pantallas pequeñas) -------- */
 @media (max-width:768px) {
 
+    body{
+        padding: 0px;
+    }
 
-body{
-    background-color: var(--color-Prin);
-    padding: 0px;
+    /* Hover más suave en móvil */
+    .Caja:not(#Links):hover{
+        transition: 1s;
+        transform: scale(1.01);
+    } 
+
+    /* Header en columna */
+    .Contenedor_Titulo{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Título más pequeño */
+    #Titulo h2{
+        font-size: 43px;
+    }
+
+    /* Ajuste de cajas en móvil */
+    .Caja:not(#Links){
+        border-radius: 10px;
+        padding: 0px;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+    .Caja #Links{
+        border-radius: 10px;
+        padding: 0px;
+        max-width: 300px;
+        height: auto;
+    }
+
+
+    /* Ajustes de imágenes */
+    #Eyes img{
+        width: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+    }
+
+    /* Links */
+    #Links{
+        display:flex; 
+        justify-content: space-evenly;  
+    }
+
+    #Links a{
+        height: 20px;
+        width: 90px;
+    }
+
+    #Links{
+    background-color: var(--color-Secun);
+    grid-area: Links;
+    font-size:large;
+    display:flex; 
+    justify-content: space-evenly;  
 }
-
-
-.Caja:not(#Links):hover{
-   transition: 2s;
-   transform: scale(1.1);
-   
-} 
-
-.Contenedor_Titulo{
-display: flex;
-justify-content: space-between;
-border-bottom: 7px solid var(--color-Secun) ;
-flex-direction: column;
-width: 100%;
-}
-
-
-
-
-#Titulo h2{
-    font-family:fantasy;
-    font-size:  43px;
-    text-transform: capitalize;
-}
-.Caja{
-    border-radius: 10px;
-    padding: 0px;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-}
-.Caja:not(#Links):hover{
-   transition: 1s;
-   transform: scale(1.01);
-} 
-
-#Eyes img{
-    width: 100%;
-    object-fit: cover;
-    border-radius: 25px;
-}
-
-
-#Links{
-background-color: var(--color-Secun);
-display:flex; 
-justify-content: space-evenly;  
-}
-#Links a{
-    background-color: aliceblue;
-    border-radius: 5px;
-    height: 20px;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-}
-#Eyes img{
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
-    border-radius: 25px;
-}
-.Contenedor_Titulo h1{
-    font-size: medium;
-}
-.megaContenedor{
-    gap: 10px;
-    row-gap: 10px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
+    /* Contenedor pasa de grid a columna */
+    .megaContenedor{
+        gap: 10px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
